@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class CardData extends StatelessWidget {
@@ -35,122 +37,115 @@ class CardData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.fromLTRB(16, 8, 16, 8),
-      child: Center(
+      margin: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             RichText(
               text: TextSpan(
                 text: 'Serial Number:  ',
                 style: TextStyle(
                   color: Colors.black.withOpacity(0.5),
-                  fontSize: 15,
+                  fontSize: 12,
                 ),
                 children: <TextSpan>[
                   TextSpan(
                     text: serialNumber,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 20,
+                      fontSize: 16,
                       color: Colors.black,
                     ),
                   ),
                 ],
               ),
             ),
-            RichText(
-              text: TextSpan(
-                text: 'Sensor Type:  ',
-                style: TextStyle(
-                  color: Colors.black.withOpacity(0.5),
-                  fontSize: 15,
+            Row(
+              children: [
+                RichText(
+                  text: TextSpan(
+                    text: 'Sensor Type:  ',
+                    style: TextStyle(
+                      color: Colors.black.withOpacity(0.5),
+                      fontSize: 12,
+                    ),
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: sensorType,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                children: <TextSpan>[
-                  TextSpan(
-                    text: sensorType,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      color: Colors.black,
+                const Spacer(),
+                RichText(
+                  text: TextSpan(
+                    text: 'Value:  ',
+                    style: TextStyle(
+                      color: Colors.black.withOpacity(0.5),
+                      fontSize: 12,
                     ),
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: sensorReading.toString(),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
             RichText(
               text: TextSpan(
-                text: 'Location:  ',
+                text: 'Location name:  ',
                 style: TextStyle(
                   color: Colors.black.withOpacity(0.5),
-                  fontSize: 15,
+                  fontSize: 12,
                 ),
                 children: <TextSpan>[
                   TextSpan(
                     text: locationName,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 20,
+                      fontSize: 16,
                       color: Colors.black,
                     ),
                   ),
                 ],
               ),
             ),
-            Text(
-              '$city, $state\t$zip',
-              style: const TextStyle(
-                color: Colors.black,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(1.0),
+                  child: Text(
+                    '$month/$day/$year',
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 2.0, right: 5.0),
+                  child: Text(
+                    '$hour:$minute:$second',
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
       ),
     );
-
-    // return Padding(
-    //   padding: const EdgeInsets.only(
-    //     left: 2.0,
-    //     right: 2.0,
-    //     top: 1.0,
-    //     bottom: 1.0,
-    //   ),
-    //   child: Card(
-    //     // Card view to store each data element in
-    //     color: const Color.fromARGB(255, 240, 227, 229),
-    //     shape: const RoundedRectangleBorder(
-    //       side: BorderSide(
-    //         color: Color(0xFF871027),
-    //       ),
-    //       borderRadius: BorderRadius.all(Radius.circular(12)),
-    //     ),
-    //     child: Column(
-    //       children: <Widget>[
-    //         Text('Serial number: $serialNumber'),
-    //         Text('Type: $sensorType'),
-    //         Text('Value: $sensorReading'),
-    //         Row(
-    //           mainAxisAlignment: MainAxisAlignment.end,
-    //           children: [
-    //             Padding(
-    //               padding: const EdgeInsets.all(1.0),
-    //               child: Text(
-    //                 '$month/$day/$year',
-    //                 style: const TextStyle(fontWeight: FontWeight.bold),
-    //               ),
-    //             ),
-    //             Padding(
-    //               padding: const EdgeInsets.only(left: 2.0, right: 5.0),
-    //               child: Text(
-    //                 '$hour:$minute:$second',
-    //                 style: const TextStyle(fontWeight: FontWeight.bold),
-    //               ),
-    //             ),
-    //           ],
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );
   }
 }
